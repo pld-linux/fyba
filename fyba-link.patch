@@ -1,0 +1,27 @@
+--- fyba/src/GM/Makefile.am.orig	2014-05-17 07:12:11.000000000 +0200
++++ fyba/src/GM/Makefile.am	2014-05-17 21:51:38.668339437 +0200
+@@ -4,6 +4,7 @@
+ lib_LTLIBRARIES = libfygm.la
+ libfygm_la_SOURCES = fygm.h GM.cpp stdafx.cpp stdafx.h
+ libfygm_la_LDFLAGS = -version-info 0:0:0
++libfygm_la_LIBADD = $(top_builddir)/src/UT/libfyut.la
+ 
+ library_includedir=$(includedir)/fyba
+ library_include_HEADERS = fygm.h 
+--- fyba/src/FYBA/Makefile.am.orig	2014-05-17 07:12:11.000000000 +0200
++++ fyba/src/FYBA/Makefile.am	2014-05-17 22:22:23.784967631 +0200
+@@ -4,6 +4,7 @@
+ lib_LTLIBRARIES = libfyba.la
+ libfyba_la_SOURCES = fyba.h Fyba_Callback.cpp  FYBA_DLL.cpp      FYHO.cpp  FYLD.cpp  FYLH.cpp  fyln.cpp  FYLP.cpp  FYLS.cpp  FYLX.cpp  stdafx.cpp FYBA.cpp           Fyba_melding.cpp  FYLB.cpp  FYLE.cpp  FYLI.cpp  FYLO.cpp  FYLR.cpp  FYLU.cpp  FYTA.cpp fyba.h  fyba_strings.h  fybax.h  stdafx.h
+ libfyba_la_LDFLAGS = -version-info 0:0:0
++libfyba_la_LIBADD = $(top_builddir)/src/GM/libfygm.la $(top_builddir)/src/UT/libfyut.la
+ 
+ library_includedir=$(includedir)/fyba
+ library_include_HEADERS = fyba.h     
+--- fyba/Makefile.am.orig	2014-05-17 07:12:11.000000000 +0200
++++ fyba/Makefile.am	2014-05-17 22:19:55.298304085 +0200
+@@ -1,3 +1,3 @@
+ ACLOCAL_AMFLAGS = -I m4
+ AUTOMAKE_OPTIONS = foreign
+-SUBDIRS = src/GM src/UT src/FYBA doc
++SUBDIRS = src/UT src/GM src/FYBA doc
