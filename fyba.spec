@@ -1,13 +1,12 @@
 Summary:	FYBA - library to read and write files in Norwegian geodata standard format SOSI
 Summary(pl.UTF-8):	FYBA - biblioteka do odczytu i zapisu plików w norweskim formacie danych geograficznych SOSI
 Name:		fyba
-Version:	4.1.0
-%define	snap	20140410
-Release:	0.%{snap}.1
+Version:	4.1.1
+Release:	1
 License:	MIT
 Group:		Libraries
-Source0:	%{name}.tar.xz
-# Source0-md5:	f4d56ae4636d8def8ab68ac7bffb5316
+Source0:	https://github.com/kartverket/fyba/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	ab687582efdef26593796271529a10cb
 Patch0:		%{name}-link.patch
 URL:		https://github.com/kartverket/fyba
 BuildRequires:	autoconf >= 2.59
@@ -54,7 +53,7 @@ Static FYBA libraries.
 Statyczne biblioteki FYBA.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 %patch0 -p1
 
 %build
@@ -73,6 +72,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# keeping *.la: .pc file exists only for libfyba
+
 # packaged as %doc
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}/fyba
 
@@ -84,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc ChangeLog README doc/en_EN
 %lang(nb) %doc doc/no_NB
 %attr(755,root,root) %{_libdir}/libfyba.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libfyba.so.0
@@ -102,6 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libfygm.la
 %{_libdir}/libfyut.la
 %{_includedir}/fyba
+%{_pkgconfigdir}/fyba.pc
 
 %files static
 %defattr(644,root,root,755)
