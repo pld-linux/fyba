@@ -2,7 +2,7 @@ Summary:	FYBA - library to read and write files in Norwegian geodata standard fo
 Summary(pl.UTF-8):	FYBA - biblioteka do odczytu i zapisu plików w norweskim formacie danych geograficznych SOSI
 Name:		fyba
 Version:	4.1.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries
 Source0:	https://github.com/kartverket/fyba/archive/%{version}/%{name}-%{version}.tar.gz
