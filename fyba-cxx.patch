@@ -1,0 +1,43 @@
+--- fyba-4.1.1/src/UT/fyut.h.orig	2014-09-22 07:36:49.000000000 +0200
++++ fyba-4.1.1/src/UT/fyut.h	2026-05-21 23:27:56.054976772 +0200
+@@ -125,8 +125,13 @@
+ 
+ 
+ /* ----------------------------------------- Makroer */
++#ifdef __cplusplus
++template<typename T, typename U> static inline auto max(T a, U b) -> decltype(a > b ? a : b) { return (a > b) ? a : b; }
++template<typename T, typename U> static inline auto min(T a, U b) -> decltype(a < b ? a : b) { return (a < b) ? a : b; }
++#else
+ #define max(a,b) (((a) > (b)) ? (a) : (b))
+ #define min(a,b) (((a) < (b)) ? (a) : (b))
++#endif
+ 
+ 
+ 
+--- fyba-4.1.1/include/fyut.h.orig	2014-09-22 07:36:49.000000000 +0200
++++ fyba-4.1.1/include/fyut.h	2026-05-21 23:28:11.523907639 +0200
+@@ -125,8 +125,13 @@
+ 
+ 
+ /* ----------------------------------------- Makroer */
++#ifdef __cplusplus
++template<typename T, typename U> static inline auto max(T a, U b) -> decltype(a > b ? a : b) { return (a > b) ? a : b; }
++template<typename T, typename U> static inline auto min(T a, U b) -> decltype(a < b ? a : b) { return (a < b) ? a : b; }
++#else
+ #define max(a,b) (((a) > (b)) ? (a) : (b))
+ #define min(a,b) (((a) < (b)) ? (a) : (b))
++#endif
+ 
+ 
+ 
+--- fyba-4.1.1/src/FYBA/FYLU.cpp.orig	2014-09-22 07:36:49.000000000 +0200
++++ fyba-4.1.1/src/FYBA/FYLU.cpp	2026-05-21 23:27:36.171874665 +0200
+@@ -10,7 +10,7 @@
+ #include <math.h>
+ #include <locale>
+ 
+-using namespace std;
++using std::locale;
+ 
+ #define U_PARA_LEN    128     /* Max lengde av parameterstreng */
+ 
